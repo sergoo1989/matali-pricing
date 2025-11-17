@@ -1,0 +1,38 @@
+# قاعدة البيانات
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# النسخ الاحتياطية
+data/backup*.sql
+data/backup*.db
+
+# ملفات Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Streamlit
+.streamlit/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ملفات مؤقتة
+*.tmp
+*.temp
+temp/
+tmp/
