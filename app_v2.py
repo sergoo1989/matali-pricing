@@ -40,6 +40,38 @@ ThemeManager.inject_global_theme()
 apply_rtl_direction()
 translate_ui()
 
+# ===== نظام الحماية بكلمة المرور =====
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.markdown("""
+        <div style='text-align: center; padding: 3rem;'>
+            <h1 style='color: #1f77b4;'>🔒 نظام متالي للتسعير الذكي</h1>
+            <p style='font-size: 1.2rem; color: #666;'>الرجاء إدخال كلمة المرور للدخول</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        password = st.text_input("🔑 كلمة المرور:", type="password", key="login_password")
+        
+        if st.button("🚀 دخول", use_container_width=True):
+            # غيّر كلمة المرور هنا
+            if password == "matali2025":
+                st.session_state.authenticated = True
+                st.success("✅ تم تسجيل الدخول بنجاح!")
+                st.rerun()
+            else:
+                st.error("❌ كلمة مرور خاطئة! حاول مرة أخرى.")
+    
+    st.markdown("""
+        <div style='text-align: center; padding: 2rem; color: #999; font-size: 0.9rem;'>
+            <p>للحصول على كلمة المرور، تواصل مع مسؤول النظام</p>
+        </div>
+    """, unsafe_allow_html=True)
+    st.stop()
+
 # تهيئة المحرك الموحد وقاعدة البيانات (مرة واحدة فقط)
 if 'engine' not in st.session_state:
     st.session_state.engine = UnifiedPricingEngine()
